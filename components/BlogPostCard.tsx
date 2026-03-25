@@ -13,13 +13,9 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
   const author = post.metadata?.author
   const category = post.metadata?.category
 
-  const authorName = author
-    ? getMetafieldValue(author.metadata?.name) || author.title || ''
-    : ''
+  const authorName = author ? getMetafieldValue(author.metadata?.name) || author.title : ''
   const authorAvatar = author?.metadata?.avatar
-  const categoryName = category
-    ? getMetafieldValue(category.metadata?.name) || category.title || ''
-    : ''
+  const categoryName = category ? getMetafieldValue(category.metadata?.name) || category.title : ''
 
   const formattedDate = publishedDate
     ? new Date(publishedDate).toLocaleDateString('en-US', {
@@ -32,7 +28,7 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] animate-slide-up flex flex-col"
+      className="group glass-card rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] animate-slide-up"
     >
       {/* Image */}
       {featuredImage?.imgix_url ? (
@@ -46,12 +42,12 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
           />
         </div>
       ) : (
-        <div className="h-52 bg-gradient-to-br from-accent-blue/10 to-accent-purple/10 flex items-center justify-center">
+        <div className="h-52 bg-gradient-to-br from-accent-cyan/10 to-accent-purple/10 flex items-center justify-center">
           <span className="text-5xl">📝</span>
         </div>
       )}
 
-      <div className="p-6 flex flex-col flex-1">
+      <div className="p-6">
         {/* Category & Date */}
         <div className="flex flex-wrap items-center gap-2 mb-3">
           {categoryName && (
@@ -69,37 +65,27 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
         </h3>
 
         {excerpt && (
-          <p className="text-dark-300 text-sm leading-relaxed line-clamp-3 flex-1">
+          <p className="text-dark-300 text-sm leading-relaxed line-clamp-3 mb-4">
             {excerpt}
           </p>
         )}
 
-        {/* Author & Read More */}
-        <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/5">
-          {authorName && (
-            <div className="flex items-center gap-2">
-              {authorAvatar?.imgix_url ? (
-                <img
-                  src={`${authorAvatar.imgix_url}?w=64&h=64&fit=crop&auto=format,compress`}
-                  alt={authorName}
-                  width={24}
-                  height={24}
-                  className="w-6 h-6 rounded-full object-cover"
-                />
-              ) : (
-                <div className="w-6 h-6 rounded-full bg-accent-cyan/20 flex items-center justify-center">
-                  <span className="text-xs">✍️</span>
-                </div>
-              )}
-              <span className="text-xs text-dark-200">{authorName}</span>
+        {/* Author */}
+        <div className="flex items-center gap-3 pt-4 border-t border-white/5">
+          {authorAvatar?.imgix_url ? (
+            <img
+              src={`${authorAvatar.imgix_url}?w=64&h=64&fit=crop&auto=format,compress`}
+              alt={authorName}
+              width={32}
+              height={32}
+              className="w-8 h-8 rounded-full object-cover"
+            />
+          ) : (
+            <div className="w-8 h-8 rounded-full bg-accent-cyan/20 flex items-center justify-center">
+              <span className="text-sm">✍️</span>
             </div>
           )}
-          <span className="inline-flex items-center gap-1 text-accent-blue text-sm font-medium group-hover:gap-2 transition-all">
-            Read
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </span>
+          <span className="text-sm text-dark-200">{authorName}</span>
         </div>
       </div>
     </Link>

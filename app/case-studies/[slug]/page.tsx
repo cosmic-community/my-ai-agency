@@ -4,6 +4,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getCaseStudyBySlug } from '@/lib/cosmic'
 import { getMetafieldValue } from '@/types'
+import Markdown from '@/components/Markdown'
 
 export async function generateMetadata({
   params,
@@ -89,13 +90,10 @@ export default async function CaseStudyDetailPage({
             </div>
           )}
 
-          {/* Content */}
+          {/* Content — now rendered as markdown */}
           {content && (
             <div className="mb-12">
-              <div
-                className="text-dark-100 leading-relaxed text-lg whitespace-pre-line"
-                dangerouslySetInnerHTML={{ __html: content }}
-              />
+              <Markdown content={content} />
             </div>
           )}
 

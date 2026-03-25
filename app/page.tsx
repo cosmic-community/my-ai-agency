@@ -207,17 +207,17 @@ export default async function HomePage() {
       {/* ── Blog Section ── */}
       {blogPosts.length > 0 && (
         <section className="section-padding relative">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent-pink/5 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent-cyan/5 to-transparent" />
           <div className="page-container relative z-10">
             <div className="text-center mb-16">
-              <p className="text-accent-pink font-semibold text-sm uppercase tracking-widest mb-3">
-                Latest Insights
+              <p className="text-accent-cyan font-semibold text-sm uppercase tracking-widest mb-3">
+                From the Blog
               </p>
               <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-                From the <span className="gradient-text">Blog</span>
+                Latest <span className="gradient-text">Insights</span>
               </h2>
               <p className="text-dark-200 max-w-xl mx-auto">
-                Thoughts on AI strategy, engineering, and building the future of digital.
+                Thoughts on AI, engineering, and building the future of digital.
               </p>
             </div>
 
@@ -230,7 +230,7 @@ export default async function HomePage() {
             <div className="text-center mt-12">
               <Link
                 href="/blog"
-                className="text-accent-pink hover:text-accent-cyan transition-colors font-medium inline-flex items-center gap-2"
+                className="text-accent-cyan hover:text-accent-purple transition-colors font-medium inline-flex items-center gap-2"
               >
                 View all posts
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

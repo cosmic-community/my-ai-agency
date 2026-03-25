@@ -4,8 +4,7 @@ import BlogPostCard from '@/components/BlogPostCard'
 
 export const metadata: Metadata = {
   title: 'Blog | My AI Agency',
-  description:
-    'Insights, strategies, and stories from our human + AI team. Stay ahead with the latest in AI, engineering, and digital transformation.',
+  description: 'Insights on AI strategy, engineering, and client stories from our human + AI team.',
 }
 
 export default async function BlogPage() {
@@ -16,19 +15,18 @@ export default async function BlogPage() {
       <div className="page-container">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in">
-          <p className="text-accent-pink font-semibold text-sm uppercase tracking-widest mb-3">
+          <p className="text-accent-cyan font-semibold text-sm uppercase tracking-widest mb-3">
             Our Blog
           </p>
-          <h1 className="text-5xl sm:text-6xl font-bold mb-6">
+          <h1 className="text-4xl sm:text-5xl font-bold mb-4">
             Insights & <span className="gradient-text">Ideas</span>
           </h1>
-          <p className="text-dark-200 max-w-2xl mx-auto text-lg">
-            Perspectives on AI strategy, modern engineering, and digital
-            transformation from our human + AI team.
+          <p className="text-dark-200 max-w-xl mx-auto">
+            Thoughts on AI strategy, engineering deep-dives, and behind-the-scenes stories from our projects.
           </p>
         </div>
 
-        {/* Blog Posts Grid */}
+        {/* Posts Grid */}
         {posts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (
@@ -36,9 +34,7 @@ export default async function BlogPage() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-20">
-            <p className="text-dark-300 text-lg">No blog posts available yet.</p>
-          </div>
+          <p className="text-center text-dark-300">No blog posts found.</p>
         )}
       </div>
     </div>
