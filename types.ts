@@ -63,6 +63,36 @@ export interface Testimonial extends CosmicObject {
   }
 }
 
+export interface Author extends CosmicObject {
+  type: 'authors'
+  metadata: {
+    name?: string
+    bio?: string
+    avatar?: CosmicMedia
+    team_member?: TeamMember
+  }
+}
+
+export interface BlogCategory extends CosmicObject {
+  type: 'blog-categories'
+  metadata: {
+    name?: string
+    description?: string
+  }
+}
+
+export interface BlogPost extends CosmicObject {
+  type: 'blog-posts'
+  metadata: {
+    excerpt?: string
+    content?: string
+    featured_image?: CosmicMedia
+    author?: Author
+    category?: BlogCategory
+    published_date?: string
+  }
+}
+
 export function getMetafieldValue(field: unknown): string {
   if (field === null || field === undefined) return ''
   if (typeof field === 'string') return field
