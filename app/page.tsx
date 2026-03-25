@@ -1,17 +1,19 @@
 import Link from 'next/link'
-import { getServices, getTeamMembers, getCaseStudies, getTestimonials } from '@/lib/cosmic'
+import { getServices, getTeamMembers, getCaseStudies, getTestimonials, getBlogPosts } from '@/lib/cosmic'
 import { getMetafieldValue } from '@/types'
 import ServiceCard from '@/components/ServiceCard'
 import TeamCard from '@/components/TeamCard'
 import CaseStudyCard from '@/components/CaseStudyCard'
 import TestimonialCard from '@/components/TestimonialCard'
+import BlogPostCard from '@/components/BlogPostCard'
 
 export default async function HomePage() {
-  const [services, teamMembers, caseStudies, testimonials] = await Promise.all([
+  const [services, teamMembers, caseStudies, testimonials, blogPosts] = await Promise.all([
     getServices(),
     getTeamMembers(),
     getCaseStudies(),
     getTestimonials(),
+    getBlogPosts(),
   ])
 
   const aiCount = teamMembers.filter((m) => {
@@ -201,6 +203,44 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ── Blog Section ── */}
+      {blogPosts.length > 0 && (
+        <section className="section-padding relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent-cyan/5 to-transparent" />
+          <div className="page-container relative z-10">
+            <div className="text-center mb-16">
+              <p className="text-accent-cyan font-semibold text-sm uppercase tracking-widest mb-3">
+                From the Blog
+              </p>
+              <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+                Latest <span className="gradient-text">Insights</span>
+              </h2>
+              <p className="text-dark-200 max-w-xl mx-auto">
+                Thoughts on AI, engineering, and building the future of digital.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {blogPosts.slice(0, 3).map((post) => (
+                <BlogPostCard key={post.id} post={post} />
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <Link
+                href="/blog"
+                className="text-accent-cyan hover:text-accent-purple transition-colors font-medium inline-flex items-center gap-2"
+              >
+                View all posts
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── Testimonials Section ── */}
       <section className="section-padding relative">
